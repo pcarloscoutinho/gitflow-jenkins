@@ -11,12 +11,11 @@ stage('build') {
     }
 }
 
-
 def branch_type = get_branch_type "${env.BRANCH_NAME}"
 def branch_deployment_environment = get_branch_deployment_environment branch_type
 
 if (branch_deployment_environment) {
-    stage('push image') {
+    stage('build image and push to registry') {
         node {
             mvn "clean package docker:build -DskipTests -DpushImage"
         }
