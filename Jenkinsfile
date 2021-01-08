@@ -23,7 +23,7 @@ def branch_deployment_environment = get_branch_deployment_environment branch_typ
 if (branch_deployment_environment) {
     stage('push image') {
         node {
-            mvn clean package docker:build -DpushImage
+            mvn "clean package docker:build -DpushImage"
         }
     }
 
