@@ -21,6 +21,12 @@ def branch_type = get_branch_type "${env.BRANCH_NAME}"
 def branch_deployment_environment = get_branch_deployment_environment branch_type
 
 if (branch_deployment_environment) {
+    stage('push image') {
+        node {
+            mvn clean package docker:build -DpushImage
+        }
+    }
+
     stage('deploy') {
         if (branch_deployment_environment == "prod") {
             timeout(time: 1, unit: 'DAYS') {

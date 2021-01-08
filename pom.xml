@@ -53,7 +53,7 @@
                 <artifactId>docker-maven-plugin</artifactId>
                 <version>1.2.2</version>
                 <configuration>
-                    <imageName>${project.artifactId}</imageName>
+                    <imageName>paulocn/${project.artifactId}</imageName>
                     <dockerDirectory>${project.basedir}</dockerDirectory>
                     <imageTags>
                         <imageTag>${project.version}</imageTag>
