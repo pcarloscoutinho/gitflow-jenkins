@@ -12,7 +12,9 @@ stage('build') {
 }
 
 stage('build docker image') {
-    agent {dockerfile true}
+    node {
+        mvn "clean package docker:build -DskipTests"
+    }
 }
 
 def branch_type = get_branch_type "${env.BRANCH_NAME}"
